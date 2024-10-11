@@ -1,5 +1,5 @@
 import i18next from 'i18next';
-import SmartDatePlugin from '..';
+import { SmartDatePlugin } from '..';
 
 describe('i18nest-smartdate', () => {
   const mockDate = new Date('2024-10-13T12:00:00Z');

@@ -18,7 +18,7 @@ const isTomorrow = (d1: Date, d2: Date) =>
 const isOvermorrow = (d1: Date, d2: Date) =>
   d1.toDateString() === new Date(new Date(d2).setDate(d2.getDate() + 2)).toDateString();
 
-const SmartDatePlugin = {
+export const SmartDatePlugin = {
   type: 'postProcessor' as ModuleType,
   name: 'smartdate',
 
@@ -94,5 +94,3 @@ const SmartDatePlugin = {
     }
   },
 };
-
-export default SmartDatePlugin;
