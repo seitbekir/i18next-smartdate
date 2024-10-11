@@ -1,0 +1,59 @@
+{
+  "name": "i18next-smartdate",
+  "version": "0.0.1",
+  "type": "module",
+  "keywords": [
+    "i18next-smartdate",
+    "i18next",
+    "i18n",
+    "i18n-smartdate",
+    "smartdate"
+  ],
+  "description": "i18next plugin for smart date formatting",
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "clean": "rm -rf ./lib",
+    "prepack": "npm run build",
+    "test": "jest",
+    "test.ci": "jest --ci --maxWorkers=7 --silent --coverage --reporters=default --reporters=jest-junit",
+    "test.cov": "jest --coverage --testFailureExitCode=0",
+    "ci.prettier": "prettier",
+    "ci.typecheck": "tsc --noEmit",
+    "ci.lint-staged": "lint-staged",
+    "prepare": "husky install"
+  },
+  "module": "./lib/index.js",
+  "files": [
+    "lib/**/*",
+    "src/**/*"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js",
+      "default": "./lib/index.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seitbekir/i18next-smartdate.git"
+  },
+  "author": "Seitbekir Seidametov",
+  "license": "MIT",
+  "dependencies": {
+    "i18next": "23.15.2"
+  },
+  "devDependencies": {
+    "@types/jest": "29.5.13",
+    "@types/node": "22.7.5",
+    "husky": "9.1.6",
+    "jest": "29.7.0",
+    "jest-junit": "16.0.0",
+    "lint-staged": "15.2.10",
+    "prettier": "3.3.2",
+    "ts-jest": "29.2.5",
+    "ts-node": "10.9.2",
+    "typescript": "5.6.3"
+  }
+}
