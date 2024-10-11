@@ -30,8 +30,8 @@ $ npm i i18next-smartdate
 ## Usage
 
 ```typescript
-import { i18next } from 'i18next';
-import { DatePlugin, DatePluginOptions } from 'i18next-smartdate';
+import i18next from 'i18next';
+import SmartDatePlugin from 'i18next-smartdate';
 
 const resources = {
   en: {
@@ -56,26 +56,66 @@ const resources = {
   },
 };
 
-void i18next.use(SmartDatePlugin).init({
+i18next.use(SmartDatePlugin).init({
+  lng: 'en',
   resources,
+  postProcess: ['smartdate'], // or individually ['smartdate'] for `t()` calls
 });
 
 const now = new Date();
-const yesterday = new Date(new Date(d2).setDate(d2.getDate() - 1));
-const tomorrow = new Date(new Date(d2).setDate(d2.getDate() + 1));
-const lastYear = new Date(new Date(d2).setFullYear(d2.getFullYear() - 1));
+const yesterday = new Date(new Date(now).setDate(now.getDate() - 1));
+const tomorrow = new Date(new Date(now).setDate(now.getDate() + 1));
+const lastYear = new Date(new Date(now).setFullYear(now.getFullYear() - 1));
+const overmorrow = new Date(new Date(now).setDate(now.getDate() + 2));
 
 console.log(
   i18next.t('date', {
-    date: new Date('2024-10-13T13:00:00Z'),
-    postProcess: ['smartdate'],
+    date: now,
   }),
 );
 
-// Output:
-// Today at at 01:00 PM
-// Or
-// Сьогодні о 13:00
+// Output: Today at 04:00 PM
+
+console.log(
+  i18next.t('date', {
+    date: yesterday,
+  }),
+);
+
+// Output: Yesterday at 04:00 PM
+
+console.log(
+  i18next.t('date', {
+    date: tomorrow,
+  }),
+);
+
+// Output: Tomorrow at 04:00 PM
+
+console.log(
+  i18next.t('date', {
+    date: lastYear,
+  }),
+);
+
+// October 13, 2023 at 04:00 PM
+
+console.log(
+  i18next.t('date', {
+    date: overmorrow,
+  }),
+);
+
+// Output: October 15 at 04:00 PM
+
+await i18next.changeLanguage('uk');
+console.log(
+  i18next.t('date', {
+    date: overmorrow,
+  }),
+);
+
+// Output: Післязавтра о 04:00 PM
 ```
 
 ## Contrubution
