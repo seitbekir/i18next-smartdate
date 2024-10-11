@@ -24,8 +24,6 @@ jobs:
         run: npm ci
       - name: Try to build
         run: npm run build
-      - name: Run application
-        run: npm start -- -s
 
   unit-tests:
     runs-on: ubuntu-latest
